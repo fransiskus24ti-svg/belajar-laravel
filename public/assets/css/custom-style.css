@@ -1,0 +1,13 @@
+.logo{
+    height: 80px;
+    weight: auto;
+
+}
+@font-face {
+    font-family: 'font-custom';
+    src: url('assets/fonts/NotoSansJP-VariableFont_wght.ttf');
+}
+
+.font-custom{
+    font-family: 'font-custom';
+}
