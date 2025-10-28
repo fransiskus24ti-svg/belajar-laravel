@@ -7,49 +7,46 @@ use Carbon\Carbon;
 
 class PegawaiController extends Controller
 {
-    public function index()
+    public function form()
     {
-        // Data dasar
-        $name = "Muzian Qashmal";
-        $tanggal_lahir = Carbon::create(2006, 7, 5); // contoh tanggal lahir
-        $tgl_harus_wisuda = Carbon::create(2026, 6, 30); // contoh tanggal wisuda
-        $current_semester = 4;
-        $future_goal = "Menjadi Software Engineer profesional";
+        return view('pegawai-form');
+    }
 
-        // Hitung umur
-        $my_age = $tanggal_lahir->age;
+    public function index(Request $request)
+    {
+        $request->validate([
+            'name' => 'required',
+            'tanggal_lahir' => 'required|date',
+            'current_semester' => 'required|integer|min:1',
+            'future_goal' => 'required',
+        ]);
+        $name = $request->input('name');
+        $tanggal_lahir = Carbon::parse($request->input('tanggal_lahir'));
+        $umur = $tanggal_lahir->age;
 
-        // Array hobi
         $hobbies = [
-            "Ngoding",
-            "Mendengarkan musik",
-            "Bermain futsal",
-            "Menonton film",
-            "Membaca buku"
+            'Membaca', 'Bermain Gitar', 'Berenang', 'Coding', 'Fotografi'
         ];
 
-        // Hitung sisa waktu menuju wisuda
-        $time_to_study_left = Carbon::now()->diffInDays($tgl_harus_wisuda);
+        $tgl_harus_wisuda = Carbon::createFromFormat('Y-m-d', '2026-08-01');
+        $time_to_study_left = now()->diffInDays($tgl_harus_wisuda, false);
 
-        // Tentukan pesan berdasarkan semester
-        if ($current_semester < 3) {
-            $motivasi = "Masih Awal, Kejar TAK!";
-        } else {
-            $motivasi = "Jangan main-main, kurang-kurangi main game!";
-        }
+        $current_semester = $request->input('current_semester');
+        $future_goal = $request->input('future_goal');
 
-        // Passing data ke view
-        $data = [
+        $motivasi = $current_semester < 3
+            ? "Masih Awal, Kejar TAK"
+            : "Jangan main-main, kurang-kurangi main game!";
+
+        return view('pegawai-index', [
             'name' => $name,
-            'my_age' => $my_age,
+            'my_age' => $umur,
             'hobbies' => $hobbies,
             'tgl_harus_wisuda' => $tgl_harus_wisuda->toFormattedDateString(),
-            'time_to_study_left' => $time_to_study_left . ' hari lagi menuju wisuda',
+            'time_to_study_left' => $time_to_study_left . ' hari',
             'current_semester' => $current_semester,
             'motivasi' => $motivasi,
-            'future_goal' => $future_goal
-        ];
-
-        return view('index', $data);
+            'future_goal' => $future_goal,
+        ]);
     }
 }

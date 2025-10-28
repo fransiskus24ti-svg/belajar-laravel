@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use PhpParser\Node\Stmt\Return_;
 
 class MahasiswaController extends Controller
 {
@@ -12,7 +11,7 @@ class MahasiswaController extends Controller
      */
     public function index()
     {
-        
+        //
     }
 
     /**
@@ -34,14 +33,14 @@ class MahasiswaController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $zian)
+    public function show(string $param1)
     {
-        if($zian=='detail'){
-        return view ('halaman-mahasiswa-detail');
-    }else if ($zian=='profil'){
-        return view('halaman-mahasiswa-profil');
+        if ($param1 == 'detail'){
+            return view('halaman-mahasiswa-detail');
+        }else if($param1 == 'profil'){
+            return view('halaman-mahasiswa-profil');
+        }
     }
-}
 
     /**
      * Show the form for editing the specified resource.
@@ -66,4 +65,5 @@ class MahasiswaController extends Controller
     {
         //
     }
+
 }

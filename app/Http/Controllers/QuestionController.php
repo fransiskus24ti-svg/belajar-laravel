@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
@@ -10,7 +11,7 @@ class QuestionController extends Controller
      */
     public function index()
     {
-      //
+        //
     }
 
     /**
@@ -26,19 +27,28 @@ class QuestionController extends Controller
      */
     public function store(Request $request)
     {
+        //dd($request->all());
         $request->validate([
-            'nama'       => 'required|max:10',
-            'email'      => ['required', 'email'],
+            'nama'  => 'required|max:10',
+            'email' => ['required','email'],
             'pertanyaan' => 'required|max:300|min:8',
-        ], [
-
-            'nama.required' => 'Nama tidak boleh kosong',
-            'email.email'   => 'Email Tidak valid',
-
+        ],[
+            'nama.required'=>'Nama tidak boleh kosong',
+            'email.email'=>'Email tidak valid'
         ]);
-       return redirect()->route('home')->with('info', 'Selamat, Kamu Lulus!');
-
+        $data['nama'] = $request->nama;
+        // $data['email'] = $request->email;
+        // $data['pertanyaan'] = $request->pertanyaan;
+        // return view('home-question-respon', $request);
+        // return redirect()->route('home')->with('info', 'Selamat, Kamu Lulus!');
+        // return redirect()->back()->with('info', 'Oops... Saldo Kamu Kurang!');
+        $nama = $request->input('nama');
+        $pertanyaan = $request->input('pertanyaan');
+        $email = $request->input('email');
+        $pesan = "Terimakasih {$nama}! Pertanyaan Anda:'{$pertanyaan}' akan segera direspon melalui email {$email}" ;
+        return redirect('/home')->with('info', $pesan);
     }
+
     /**
      * Display the specified resource.
      */

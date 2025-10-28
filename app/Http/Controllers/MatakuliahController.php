@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
@@ -10,7 +11,7 @@ class MatakuliahController extends Controller
      */
     public function index()
     {
-        return "menampilkan data matakuliah";
+        return 'Menampilkan data matakuliah';
     }
 
     /**
@@ -18,7 +19,7 @@ class MatakuliahController extends Controller
      */
     public function create()
     {
-        //
+        return 'membuat ghjfgjgj matakuliah';
     }
 
     /**
@@ -26,43 +27,42 @@ class MatakuliahController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return 'Store';
     }
 
     /**
      * Display the specified resource.
      */
-    public function show($id = null)
+    public function show(string $param1 = '')
     {
-        if ($id) {
-            return "anda mengakses matakuliah" . $id;
-        } else {
-            return "masukkan kode matakuliah";
+       if ($param1 == 'ST445'){
+            return view('halaman-matakuliah');
+        }else{
+            return view('halaman-matakuliah-null');
         }
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-
-    public function edit($id)
+    public function edit(string $id)
     {
-        //
+        return 'edit';
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, string $id)
     {
-        //
+        return 'update';
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy( $id)
+    public function destroy(string $id)
     {
-        //
+        return 'destroy';
     }
 }

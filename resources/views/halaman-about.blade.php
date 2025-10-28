@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <title>about page</title>
+    <title>About Page</title>
 </head>
 <body>
-<h1>ini adalah halaman about</h1>
-<p>laravel membuat development lebih cepat</p>
+    <h1>Ini adalah halaman About</h1>
+    <p>Laravel membuat develiohi lebih cepat</p>
 </body>
 </html>

@@ -5,9 +5,6 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\QuestionController;
-use App\Http\Controllers\DashboardController;
-
-Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
 Route::get('/pcr', function () {
     return 'Selamat Datang di Website Kampus PCR!';
@@ -15,7 +12,7 @@ Route::get('/pcr', function () {
 use App\Http\Controllers\MatakuliahController;
 
 Route::get('/mahasiswa', function () {
-    return 'Hallo Mahasiswa';
+    return 'Hai Mahasiswa';
 });
 
 Route::get('/nama/{param1}', function ($param1) {
@@ -36,4 +33,24 @@ Route::get('/matakuliah/show/{param1?}', [MatakuliahController ::class,'show']) 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])
         ->name('home');
 Route::post('question/store', [QuestionController::class, 'store'])
-        ->name('question.store');
+		->name('question.store');
+
+use App\Http\Controllers\AuthController;
+Route::get('/auth',[AuthController::class,'index']);
+
+Route::post('/auth/login', [AuthController::class, 'login']);
+
+use App\Http\Controllers\PegawaiController;
+Route::get('/pegawai', [PegawaiController::class, 'form']);
+Route::post('/pegawai', [PegawaiController::class, 'index']);
+
+use App\Http\Controllers\DashboardController;
+Route::get('dashboard', [DashboardController::class, 'index'])
+        ->name('dashboard');
+
+use App\Http\Controllers\PelangganController;
+Route::resource('pelanggan', PelangganController::class);
+
+use App\Http\Controllers\UserController;
+Route::resource('user', UserController::class);
+

@@ -1,13 +1,12 @@
-.logo{
-    height: 80px;
-    weight: auto;
-
+.gambar{
+    height: 40px;
+    width: auto;
 }
 @font-face {
-    font-family: 'font-custom';
-    src: url('assets/fonts/NotoSansJP-VariableFont_wght.ttf');
+    font-family: 'MyCustomFont';
+    src: url('../fonts/MyCustomFont.ttf');
 }
 
 .font-custom{
-    font-family: 'font-custom';
+    font-family: 'MyCustomFont';
 }

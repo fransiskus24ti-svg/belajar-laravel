@@ -48,8 +48,8 @@
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container">
-            <a class="navbar-brand font-custom" href="#">My App</a>
-            <img src="{{ asset('assets/images/syauqi.jpg') }}"class="logo" alt="syauqi">
+            <a class="navbar-brand " href="#">My App</a>
+            <img src="{{ asset('assets/images/gambar.png') }}" class="gambar" alt="Logo">
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -75,8 +75,8 @@
     <!-- Hero Section -->
     <section class="hero-section">
         <div class="container">
-            <h1>Welcome to My App</h1>
-            <p class="lead">A simple and elegant app using Bootstrap 5 and Laravel Blade</p>
+            <h1 class="font-custom">Welcome to My App</h1>
+            <p class="lead font-custom">A simple and elegant app using Bootstrap 5 and Laravel Blade</p>
             <a href="#content" class="btn btn-light btn-lg mt-3">Learn More</a>
         </div>
     </section>
@@ -128,6 +128,7 @@
     <div class="card-body">
         <h5 class="card-title">Form Pertanyaan</h5>
         @if ($errors->any())
+
         <div class="alert alert-danger">
             <ul>
                 @foreach ($errors->all() as $error)
@@ -135,13 +136,22 @@
                 @endforeach
             </ul>
         </div>
+            <div class="alert alert-denger">
+                <ul>
+                    @foreach ($errors->all() as $errors )
+                        <li>{{$errors}}</li>
+                    @endforeach
+                </ul>
+            </div>
+
         @endif
         <form action="{{ route('question.store') }}" method="POST">
-        @csrf
+	    @csrf
 
         <form action="" method="POST">
             <div class="mb-3">
                 <label for="nama" class="form-label">Nama</label>
+
                 <input type="text" class="form-control" name="nama" value="{{old('nama')}}">
             </div>
             <div class="mb-3">
@@ -151,6 +161,8 @@
             <div class="mb-3">
                 <label for="pertanyaan" class="form-label">Pertanyaan</label>
                 <textarea class="form-control" rows="4" name="pertanyaan" value="{{old('pertanyaan')}}"></textarea>
+
+                <input type="text" class="form-control" id="nama" name="nama" value="{{old('nama')}}">
             </div>
             <button type="submit" class="btn btn-primary">Kirim Pertanyaan</button>
         </form>
