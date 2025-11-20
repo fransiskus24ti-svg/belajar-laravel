@@ -58,6 +58,7 @@
                         <table id="table-pelanggan" class="table table-centered table-nowrap mb-0 rounded">
                             <thead class="thead-light">
                                 <tr>
+                                    <th class="border-0">No</th>
                                     <th class="border-0">FirstName</th>
                                     <th class="border-0">LastName</th>
                                     <th class="border-0">Birthday</th>
@@ -68,8 +69,9 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($dataPelanggan as $item)
+                                @foreach ($dataPelanggan as $index => $item)
                                     <tr>
+                                        <td>{{$dataPelanggan ->firstitem()+$index }}</td>
                                         <td>{{ $item->first_name }}</td>
                                         <td>{{ $item->last_name }}</td>
                                         <td>{{ $item->birthday }}</td>
@@ -110,7 +112,8 @@
                         <table id="table-pelanggan">...</table>
 
                         <div class="mt-3">
-                            {{ $dataPelanggan->links('pagination::bootstrap-5') }}
+                            {{-- {{ $dataPelanggan->links('pagination::bootstrap-5') }} --}}
+                            {{ $dataPelanggan->links('pagination::simple-bootstrap-5') }}
                         </div>
                     </div>
                 </div>
