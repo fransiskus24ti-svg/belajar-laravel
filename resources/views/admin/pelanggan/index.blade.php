@@ -36,11 +36,10 @@
                 <div class="card-body">
                     <div class="table-responsive">
                         <div class="table-responsive">
-                            <form method="GET" action="{{ route('pelanggan.index') }}" onchange="this.form.submit()"
-                                class="mb-3">
+                            <form method="GET" action="{{ route('pelanggan.index') }}" class="mb-3">
                                 <div class="row">
                                     <div class="col-md-2">
-                                        <select name="gender" class="form-select">
+                                        <select name="gender" class="form-select" onchange="this.form.submit()">
                                             <option value="">All</option>
                                             <option value="Male" {{ request('gender') == 'Male' ? 'selected' : '' }}>Male
                                             </option>
@@ -48,12 +47,27 @@
                                                 Female</option>
                                         </select>
                                     </div>
+                                    <div class="col-md-3">
+                                        <div class="input-group">
+                                            <input type="text" name="search" class="form-control"
+                                                id="exampleInputIconRight" value="{{ request('search') }}"
+                                                placeholder="Search" aria-label="Search">
+                                            <button type="submit" class="input-group-text" id="basic-addon2">
+                                                <svg class="icon icon-xxs" fill="currentColor" viewBox="0 0 20 20"
+                                                    xmlns="http://www.w3.org/2000/svg">
+                                                    <path fill-rule="evenodd"
+                                                        d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
+                                                        clip-rule="evenodd"></path>
+                                                </svg>
+                                            </button>
+                                            @if (request('search'))
+                                                <a href="{{ request()->fullUrlWithQuery(['search' => null]) }}"
+                                                    class="btn btn-outline-secondary ml-3" id="clear-search"> Clear</a>
+                                            @endif
+                                        </div>
+                                    </div>
                                 </div>
                             </form>
-
-                            <table>...</table>
-
-                            ...
                         </div>
                         <table id="table-pelanggan" class="table table-centered table-nowrap mb-0 rounded">
                             <thead class="thead-light">
@@ -71,7 +85,7 @@
                             <tbody>
                                 @foreach ($dataPelanggan as $index => $item)
                                     <tr>
-                                        <td>{{$dataPelanggan ->firstitem()+$index }}</td>
+                                        <td>{{ $dataPelanggan->firstitem() + $index }}</td>
                                         <td>{{ $item->first_name }}</td>
                                         <td>{{ $item->last_name }}</td>
                                         <td>{{ $item->birthday }}</td>
@@ -109,15 +123,13 @@
                                 @endforeach
                             </tbody>
                         </table>
-                        <table id="table-pelanggan">...</table>
-
                         <div class="mt-3">
                             {{-- {{ $dataPelanggan->links('pagination::bootstrap-5') }} --}}
                             {{ $dataPelanggan->links('pagination::simple-bootstrap-5') }}
                         </div>
                     </div>
                 </div>
-            </div>S
+            </div>
         </div>
     </div>
 @endsection
