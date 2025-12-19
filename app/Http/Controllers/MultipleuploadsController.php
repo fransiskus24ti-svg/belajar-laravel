@@ -7,9 +7,10 @@ use Illuminate\Http\Request;
 
 class MultipleuploadsController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    protected $table ='multiuploads';
+    protected $primaryKey = 'id';
+    protected $fillable = array('filename','created_at','updated_at');
+    
     public function index()
     {
         //
